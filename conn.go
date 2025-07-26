@@ -894,6 +894,9 @@ const (
 // In the interests of simplicity and determinism, this code does not attempt
 // to reset the record size once the connection is idle, however.
 func (c *Conn) maxPayloadSizeForWrite(typ recordType) int {
+	if typ == recordTypeHandshake && c.config.MaxClientHelloRecordSize > 512 {
+		return c.config.MaxClientHelloRecordSize
+	}
 	if c.config.DynamicRecordSizingDisabled || typ != recordTypeApplicationData {
 		return maxPlaintext
 	}

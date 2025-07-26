@@ -164,6 +164,7 @@ func (p *ClientHelloID) IsSet() bool {
 const (
 	// clients
 	helloGolang           = "Golang"
+	helloGolangJunkExt    = "GolangJunkExt"
 	helloRandomized       = "Randomized"
 	helloRandomizedALPN   = "Randomized-ALPN"
 	helloRandomizedNoALPN = "Randomized-NoALPN"
@@ -592,6 +593,8 @@ var (
 	// UConn.Extensions will be completely ignored.
 	HelloGolang = ClientHelloID{helloGolang, helloAutoVers, nil, nil}
 
+	// HelloGolang_Junk_Ext will send ClientHello With Junk Extension
+	HelloGolang_Junk_Ext = ClientHelloID{helloGolangJunkExt, helloAutoVers, nil, nil}
 	// HelloCustom will prepare ClientHello with empty uconn.Extensions so you can fill it with
 	// TLSExtensions manually or use ApplyPreset function
 	HelloCustom = ClientHelloID{helloCustom, helloAutoVers, nil, nil}

@@ -832,6 +832,10 @@ type Config struct {
 	// signature schemes, see tls_cf.go.
 	PQSignatureSchemesEnabled bool // [UTLS] ported from cloudflare/go
 
+	// MaxClientHelloRecordSize controls size of ClientHello Record Size
+	// MaxClientHelloRecordSize must large than 512
+	MaxClientHelloRecordSize int
+
 	// DynamicRecordSizingDisabled disables adaptive sizing of TLS records.
 	// When true, the largest possible TLS record size is always used. When
 	// false, the size of TLS records may be adjusted in an attempt to
@@ -1010,6 +1014,7 @@ func (c *Config) Clone() *Config {
 		MaxVersion:                          c.MaxVersion,
 		CurvePreferences:                    c.CurvePreferences,
 		PQSignatureSchemesEnabled:           c.PQSignatureSchemesEnabled, // [UTLS]
+		MaxClientHelloRecordSize:            c.MaxClientHelloRecordSize,
 		DynamicRecordSizingDisabled:         c.DynamicRecordSizingDisabled,
 		Renegotiation:                       c.Renegotiation,
 		KeyLogWriter:                        c.KeyLogWriter,
