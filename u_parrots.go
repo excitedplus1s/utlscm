@@ -32,6 +32,60 @@ func UTLSIdToSpec(id ClientHelloID) (ClientHelloSpec, error) {
 
 func utlsIdToSpec(id ClientHelloID) (ClientHelloSpec, error) {
 	switch id {
+	case HelloGolang_Junk_Ext:
+		return ClientHelloSpec{
+			TLSVersMax: VersionTLS13,
+			TLSVersMin: VersionTLS10,
+			CipherSuites: []uint16{
+				TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+				TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+				TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+				TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+				TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
+				TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+				TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
+				TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+				TLS_AES_128_GCM_SHA256,
+				TLS_AES_256_GCM_SHA384,
+				TLS_CHACHA20_POLY1305_SHA256,
+			},
+			CompressionMethods: []byte{compressionNone},
+			Extensions: []TLSExtension{
+				&JunkExtension{Size: 512},
+				&SNIExtension{},
+				&SupportedPointsExtension{SupportedPoints: []byte{pointFormatUncompressed}},
+				&RenegotiationInfoExtension{Renegotiation: RenegotiateNever},
+				&ExtendedMasterSecretExtension{},
+				&SCTExtension{},
+				&StatusRequestExtension{},
+				&SupportedCurvesExtension{[]CurveID{X25519MLKEM768, X25519, CurveP256, CurveP384, CurveP521}},
+				&SignatureAlgorithmsExtension{SupportedSignatureAlgorithms: []SignatureScheme{
+					PSSWithSHA256,
+					ECDSAWithP256AndSHA256,
+					Ed25519,
+					PSSWithSHA384,
+					PSSWithSHA512,
+					PKCS1WithSHA256,
+					PKCS1WithSHA384,
+					PKCS1WithSHA512,
+					ECDSAWithP384AndSHA384,
+					ECDSAWithP521AndSHA512,
+					PKCS1WithSHA1,
+					ECDSAWithSHA1},
+				},
+				&SupportedVersionsExtension{[]uint16{
+					VersionTLS13,
+					VersionTLS12,
+				}},
+				&KeyShareExtension{[]KeyShare{
+					{Group: X25519MLKEM768},
+					{Group: X25519},
+				}},
+			},
+			GetSessionID: nil,
+		}, nil
 	case HelloChrome_58, HelloChrome_62:
 		return ClientHelloSpec{
 			TLSVersMax: VersionTLS12,

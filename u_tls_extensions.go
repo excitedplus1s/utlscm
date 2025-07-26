@@ -1944,3 +1944,46 @@ func (e *FakeDelegatedCredentialsExtension) UnmarshalJSON(data []byte) error {
 	}
 	return nil
 }
+
+type JunkExtension struct {
+	Size uint16
+	rand io.Reader
+}
+
+func (e *JunkExtension) writeToUConn(uc *UConn) error {
+	e.rand = uc.config.rand()
+	return nil
+}
+
+func (e *JunkExtension) Len() int {
+	return 4 + int(e.Size)
+}
+
+func (e *JunkExtension) Read(b []byte) (int, error) {
+	fullLen := e.Len()
+	if len(b) < e.Len() {
+		return 0, io.ErrShortBuffer
+	}
+	extb := make([]byte, 1)
+	if _, err := io.ReadFull(e.rand, extb); err != nil {
+		return 0, err
+	}
+	extId := 65282 + uint16(extb[0])%255
+	b[0] = byte(extId >> 8)
+	b[1] = byte(extId & 0xFF)
+	b[2] = byte(e.Size >> 8)
+	b[3] = byte(e.Size)
+	dataLen := fullLen - 4
+	if dataLen > 0 {
+		buf := make([]byte, dataLen)
+		if _, err := io.ReadFull(e.rand, buf); err != nil {
+			return 0, err
+		}
+		copy(b[4:], buf)
+	}
+	return e.Len(), io.EOF
+}
+
+func (e *JunkExtension) Write(b []byte) (int, error) {
+	return len(b), nil
+}
