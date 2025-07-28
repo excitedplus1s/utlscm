@@ -19,8 +19,8 @@ import (
 	"slices"
 	"time"
 
-	"github.com/excitedplus1s/utls/internal/hkdf"
-	"github.com/excitedplus1s/utls/internal/tls13"
+	"github.com/excitedplus1s/utlscm/internal/hkdf"
+	"github.com/excitedplus1s/utlscm/internal/tls13"
 )
 
 type clientHandshakeStateTLS13 struct {

@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/excitedplus1s/utls/internal/hpke"
+	"github.com/excitedplus1s/utlscm/internal/hpke"
 
 	"golang.org/x/crypto/cryptobyte"
 )

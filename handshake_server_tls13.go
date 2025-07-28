@@ -18,11 +18,11 @@ import (
 	"sort"
 	"time"
 
-	"github.com/excitedplus1s/utls/internal/byteorder"
-	"github.com/excitedplus1s/utls/internal/fips140tls"
-	"github.com/excitedplus1s/utls/internal/hkdf"
-	"github.com/excitedplus1s/utls/internal/hpke"
-	"github.com/excitedplus1s/utls/internal/tls13"
+	"github.com/excitedplus1s/utlscm/internal/byteorder"
+	"github.com/excitedplus1s/utlscm/internal/fips140tls"
+	"github.com/excitedplus1s/utlscm/internal/hkdf"
+	"github.com/excitedplus1s/utlscm/internal/hpke"
+	"github.com/excitedplus1s/utlscm/internal/tls13"
 )
 
 // maxClientPSKIdentities is the number of client PSK identities the server will
