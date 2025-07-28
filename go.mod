@@ -1,4 +1,4 @@
-module github.com/excitedplus1s/utls
+module github.com/excitedplus1s/utlscm
 
 go 1.24
 

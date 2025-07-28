@@ -18,7 +18,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/excitedplus1s/utls/internal/byteorder"
+	"github.com/excitedplus1s/utlscm/internal/byteorder"
 )
 
 // serverHandshakeState contains details of a server handshake in progress.

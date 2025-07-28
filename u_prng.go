@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * Released under utls licence:
- * https://github.com/excitedplus1s/utls/blob/master/LICENSE
+ * https://github.com/excitedplus1s/utlscm/blob/master/LICENSE
  */
 
 // This code is a pared down version of:

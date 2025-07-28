@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/excitedplus1s/utls/internal/tls12"
+	"github.com/excitedplus1s/utlscm/internal/tls12"
 )
 
 type prfFunc func(secret []byte, label string, seed []byte, keyLen int) []byte

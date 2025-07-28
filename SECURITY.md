@@ -6,6 +6,6 @@ We will only maintain one branch which is the master branch. Unless otherwise re
 
 ## Reporting a Vulnerability
 
-For a vulnerability of low to no severity, which causing no threats to security, you may report it openly to us by [opening an issue](https://github.com/excitedplus1s/utls/issues/new)
+For a vulnerability of low to no severity, which causing no threats to security, you may report it openly to us by [opening an issue](https://github.com/excitedplus1s/utlscm/issues/new)
 
-If the vulnerability you are reporting inflicts some security impact, please [do so privately](https://github.com/excitedplus1s/utls/security/advisories/new).
+If the vulnerability you are reporting inflicts some security impact, please [do so privately](https://github.com/excitedplus1s/utlscm/security/advisories/new).

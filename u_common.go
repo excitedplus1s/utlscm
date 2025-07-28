@@ -13,7 +13,7 @@ import (
 	"hash"
 	"log"
 
-	"github.com/excitedplus1s/utls/internal/helper"
+	"github.com/excitedplus1s/utlscm/internal/helper"
 	"golang.org/x/crypto/cryptobyte"
 )
 
